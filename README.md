@@ -1,8 +1,7 @@
 # Monarch
 [Download the game](https://abidzzz.itch.io/monarch)
 
-![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-19-54_1366x768.png)
-![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-20-55_1366x768.png)
+
 ## Description
 
 A game inspired by the combat mechanics of the Souls series made in godot . It has alot of bugs but "it is what it is"
@@ -14,11 +13,8 @@ A game inspired by the combat mechanics of the Souls series made in godot . It h
 - **Free Assets:** All assets used in the game are freely available.
 
 ## Screenshots
-
-![Screenshot 1](path/to/screenshot1.png)
-![Screenshot 2](path/to/screenshot2.png)
-
-
+![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-20-55_1366x768.png)
+![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-19-54_1366x768.png)
 
 
 ### Prerequisites
