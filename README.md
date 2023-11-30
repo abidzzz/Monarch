@@ -15,7 +15,10 @@ A game inspired by the combat mechanics of the Souls series made in godot . It h
 ## Screenshots
 ![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-20-55_1366x768.png)
 ![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-19-54_1366x768.png)
-
+![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-19-01_1366x768.png)
+![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-21-56_1366x768.png)
+![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-23-34_1366x768.png)
+![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-19-12_1366x768.png)
 
 ### Prerequisites
 
