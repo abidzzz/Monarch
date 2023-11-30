@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfec1k1usat1l"]
+
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_qiyr5"]
+[ext_resource type="PackedScene" uid="uid://dtdrj6qny6bdm" path="res://assets/models/Monarch-L.glb" id="2_xx5x0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p0b5u"]
+radius = 0.3
+
+[node name="boss" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6666, 0, -18.2562)
+script = ExtResource("1_qiyr5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_p0b5u")
+
+[node name="Monarch-L" parent="." instance=ExtResource("2_xx5x0")]

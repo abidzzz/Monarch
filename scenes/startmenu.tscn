@@ -1,0 +1,516 @@
+[gd_scene load_steps=16 format=3 uid="uid://rs0ohhackqq0"]
+
+[ext_resource type="Script" path="res://scripts/startmenu.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://cenl6x5i1dt7x" path="res://assets/fonts/Soul_Font.ttf" id="3_vyvyh"]
+[ext_resource type="Theme" uid="uid://p27t6q57i4k3" path="res://assets/startmenu.theme" id="4"]
+[ext_resource type="AudioStream" uid="uid://sv0vf3nygwvw" path="res://assets/Sounds/Music/1-01 Dark Souls III.mp3" id="4_dmiwr"]
+[ext_resource type="Texture2D" uid="uid://cv8gr0tpnb3dj" path="res://assets/Sprites/MouseLeft.png" id="4_nhy0u"]
+[ext_resource type="AudioStream" uid="uid://cefr8l8315pe6" path="res://assets/Sounds/CURSOL_OK.wav.mp3" id="5_gfuu8"]
+[ext_resource type="Texture2D" uid="uid://bbqdiwkcvnxp2" path="res://assets/Sprites/MouseRight.png" id="5_tf8s4"]
+[ext_resource type="AudioStream" uid="uid://cy1tae7eveeu7" path="res://assets/Sounds/Buttons/CURSOL_SELECT.wav.mp3" id="6_1wa7b"]
+
+[sub_resource type="Shortcut" id="3"]
+
+[sub_resource type="Shortcut" id="7"]
+
+[sub_resource type="Animation" id="Animation_v1eay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title/Sub:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu/StartBtn:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainMenu/QuitBtn:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Credits:theme_override_colors/font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Controls/Background2:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1ewbm"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title/Sub:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu/StartBtn:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainMenu/QuitBtn:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Credits:theme_override_colors/font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="9"]
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_5t4ik"]
+resource_name = "Fade_Controls"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls/Background2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1, 1.1, 1.2, 1.3, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.0980392), Color(0, 0, 0, 0), Color(0, 0, 0, 0.1), Color(0, 0, 0, 0.2), Color(0, 0, 0, 0.3), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xvp5v"]
+_data = {
+"Fade_Controls": SubResource("Animation_5t4ik"),
+"RESET": SubResource("Animation_v1eay"),
+"fade": SubResource("Animation_1ewbm"),
+"settings": SubResource("9")
+}
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4")
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.5
+offset_top = 185.0
+offset_right = 237.5
+offset_bottom = 343.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_vyvyh")
+theme_override_font_sizes/font_size = 154
+text = "Monarch"
+
+[node name="Sub" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 151.0
+offset_top = 124.0
+offset_right = 626.0
+offset_bottom = 282.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_vyvyh")
+theme_override_font_sizes/font_size = 50
+text = "v.0.04"
+
+[node name="Credits" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -48.0
+offset_right = 373.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_vyvyh")
+theme_override_font_sizes/font_size = 35
+text = "Made by Abid "
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -298.0
+offset_right = 98.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StartBtn" type="Button" parent="MainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+shortcut = SubResource("3")
+text = "Start"
+
+[node name="QuitBtn" type="Button" parent="MainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+shortcut = SubResource("7")
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xvp5v")
+}
+
+[node name="Controls" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Q" type="ColorRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -111.0
+offset_right = 161.0
+offset_bottom = -52.0
+grow_vertical = 0
+tooltip_text = "W
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Controls/Q"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 6.0
+offset_right = 59.0
+offset_bottom = 51.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 34
+text = "Q"
+scroll_active = false
+
+[node name="healText" type="RichTextLabel" parent="Controls/Q"]
+offset_left = -11.0
+offset_top = 57.0
+offset_right = 187.0
+offset_bottom = 122.0
+theme_override_font_sizes/normal_font_size = 38
+text = "Heal"
+scroll_active = false
+
+[node name="Title" type="Label" parent="Controls"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_top = -3.0
+offset_right = 285.0
+offset_bottom = 155.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_vyvyh")
+theme_override_font_sizes/font_size = 107
+text = "Controls"
+
+[node name="Shift" type="ColorRect" parent="Controls"]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 382.0
+offset_right = 1129.0
+offset_bottom = 426.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Controls/Shift"]
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 108.0
+offset_bottom = 47.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 34
+text = "SHIFT"
+scroll_active = false
+
+[node name="rUNText" type="RichTextLabel" parent="Controls/Shift"]
+layout_mode = 0
+offset_left = -88.0
+offset_right = 111.0
+offset_bottom = 65.0
+theme_override_font_sizes/normal_font_size = 38
+text = "Run
+"
+scroll_active = false
+
+[node name="Left" type="TextureRect" parent="Controls"]
+offset_left = 1062.0
+offset_top = 191.0
+offset_right = 1116.0
+offset_bottom = 266.0
+texture = ExtResource("4_nhy0u")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Controls/Left"]
+layout_mode = 0
+offset_left = -166.0
+offset_top = -1.0
+offset_right = -23.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 38
+text = "Attack"
+scroll_active = false
+
+[node name="Right" type="TextureRect" parent="Controls"]
+offset_left = 1062.0
+offset_top = 513.0
+offset_right = 1116.0
+offset_bottom = 588.0
+texture = ExtResource("5_tf8s4")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Controls/Right"]
+layout_mode = 0
+offset_left = -248.0
+offset_top = -7.0
+offset_right = 63.0
+offset_bottom = 58.0
+theme_override_font_sizes/normal_font_size = 38
+text = "Attack Combo
+"
+scroll_active = false
+
+[node name="MovementText" type="RichTextLabel" parent="Controls"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 357.0
+offset_right = 330.0
+offset_bottom = 422.0
+theme_override_font_sizes/normal_font_size = 38
+text = "Movement"
+scroll_active = false
+
+[node name="W" type="ColorRect" parent="Controls"]
+offset_left = 185.0
+offset_top = 157.0
+offset_right = 246.0
+offset_bottom = 216.0
+tooltip_text = "W
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Controls/W"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 54.0
+offset_bottom = 53.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 34
+text = "W"
+scroll_active = false
+
+[node name="D" type="ColorRect" parent="Controls"]
+offset_left = 263.0
+offset_top = 227.0
+offset_right = 324.0
+offset_bottom = 286.0
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Controls/D"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 60.0
+offset_bottom = 53.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 34
+text = "D"
+scroll_active = false
+
+[node name="a" type="ColorRect" parent="Controls"]
+offset_left = 107.0
+offset_top = 228.0
+offset_right = 168.0
+offset_bottom = 287.0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Controls/a"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 6.0
+offset_right = 59.0
+offset_bottom = 51.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 34
+text = "A"
+scroll_active = false
+
+[node name="s" type="ColorRect" parent="Controls"]
+offset_left = 184.0
+offset_top = 227.0
+offset_right = 245.0
+offset_bottom = 286.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Controls/s"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 56.0
+offset_bottom = 51.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 34
+text = "S"
+scroll_active = false
+
+[node name="Background2" type="ColorRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="Audio"]
+visible = false
+stream = ExtResource("4_dmiwr")
+
+[node name="enter" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("5_gfuu8")
+
+[node name="select" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("6_1wa7b")
+
+[connection signal="focus_entered" from="MainMenu" to="." method="_on_main_menu_focus_entered"]
+[connection signal="mouse_entered" from="MainMenu" to="." method="_on_main_menu_mouse_entered"]
+[connection signal="focus_entered" from="MainMenu/StartBtn" to="." method="_on_start_btn_focus_entered"]
+[connection signal="mouse_entered" from="MainMenu/StartBtn" to="." method="_on_start_btn_mouse_entered"]
+[connection signal="pressed" from="MainMenu/StartBtn" to="." method="_on_StartBtn_pressed"]
+[connection signal="focus_entered" from="MainMenu/QuitBtn" to="." method="_on_quit_btn_focus_entered"]
+[connection signal="mouse_entered" from="MainMenu/QuitBtn" to="." method="_on_quit_btn_mouse_entered"]
+[connection signal="pressed" from="MainMenu/QuitBtn" to="." method="_on_QuitBtn_pressed"]

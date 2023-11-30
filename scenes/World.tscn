@@ -1,0 +1,214 @@
+[gd_scene load_steps=24 format=3 uid="uid://cfnk12h04inc5"]
+
+[ext_resource type="Texture2D" uid="uid://dq7stnsr46i34" path="res://assets/textures/Ground.jpg" id="1_4bi4x"]
+[ext_resource type="PackedScene" uid="uid://cgmli5nnmrq57" path="res://scenes/player.tscn" id="1_tr3uu"]
+[ext_resource type="PackedScene" uid="uid://5dmbmmo4eojk" path="res://scenes/monarch_l.tscn" id="2_5l0sf"]
+[ext_resource type="PackedScene" uid="uid://dhuoi7y28jhr" path="res://assets/models/Mountain.glb" id="3_n3yxw"]
+[ext_resource type="Theme" uid="uid://fekxx548no0i" path="res://assets/health.tres" id="4_6gg4q"]
+[ext_resource type="Theme" uid="uid://qlof3v50xw4u" path="res://assets/stamina.tres" id="6_ou7jm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ee336"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_okogx"]
+sky_material = SubResource("ProceduralSkyMaterial_ee336")
+
+[sub_resource type="Environment" id="Environment_kkvb3"]
+background_mode = 2
+sky = SubResource("Sky_okogx")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(0.403922, 0.243137, 0.227451, 1)
+volumetric_fog_emission = Color(0.662745, 0.372549, 0.321569, 1)
+
+[sub_resource type="Shader" id="Shader_bwe3j"]
+code = "shader_type fog;
+
+uniform sampler2D noise_tex:repeat_enable;
+uniform sampler2D grad_tex;
+uniform float noise_scale = 1.0;
+uniform float flatness = 1.0;
+uniform float density = 1.0;
+
+void fog() {
+	vec2 move_uv = vec2 (0.2, 0.8)*TIME;
+	float detail_noise = texture(noise_tex, WORLD_POSITION.xz * noise_scale + move_uv*0.5).r;
+	detail_noise *= 9.2;
+	float noise = texture(noise_tex, WORLD_POSITION. xz*noise_scale + move_uv + detail_noise).r;
+	DENSITY = mix(1.0 , noise , UVW.y * flatness);
+	DENSITY *= step(0.0, -SDF)*density;
+	vec3 col = texture (grad_tex, vec2 (DENSITY, 0.5)).rgb;
+	ALBEDO = vec3(col);
+
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_3lvpe"]
+offsets = PackedFloat32Array(0, 0.287129, 0.455446, 0.881188, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.85098, 0.717647, 0.466667, 1, 0.674915, 0.569168, 0.370115, 1, 0.881188, 0.881188, 0.881188, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bjmfd"]
+gradient = SubResource("Gradient_3lvpe")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_knrce"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4befe"]
+seamless = true
+noise = SubResource("FastNoiseLite_knrce")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vr4po"]
+shader = SubResource("Shader_bwe3j")
+shader_parameter/noise_scale = 1.0
+shader_parameter/flatness = 1.0
+shader_parameter/density = 1.0
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_4befe")
+shader_parameter/grad_tex = SubResource("GradientTexture1D_bjmfd")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_18je3"]
+vertices = PackedVector3Array(-64.75, 0.497928, -74.5, -74.5, 0.497928, -74.5, -74.5, 0.497928, -63, -54.75, 0.497928, -74.5, -64.75, 0.497928, -74.5, -74.5, 0.497928, -63, -54.75, 0.497928, -74.5, -74.5, 0.497928, -63, -74.5, 0.497928, -51.5, -45, 0.497928, -74.5, -25.25, 0.497928, -74.5, -35, 0.497928, -74.5, -74.5, 0.497928, -40, -74.5, 0.497928, -28.25, 3.75, 0.497928, -28.25, 3.75, 0.497928, -29.25, 4.5, 0.497928, -29.5, 4.5, 0.497928, -74.5, -5.5, 0.497928, -74.5, -45, 0.497928, -74.5, -74.5, 0.497928, -51.5, -74.5, 0.497928, -40, -35, 0.497928, -74.5, 3.75, 0.497928, -28.25, -15.25, 0.497928, -74.5, -25.25, 0.497928, -74.5, 3.75, 0.497928, -28.25, 3.75, 0.497928, -29.25, -5.5, 0.497928, -74.5, -15.25, 0.497928, -74.5, 74.5, 0.497928, -62.75, 74.5, 0.497928, -74.5, 65.75, 0.497928, -74.5, 74.5, 0.497928, -62.75, 65.75, 0.497928, -74.5, 57, 0.497928, -74.5, 74.5, 0.497928, -62.75, 57, 0.497928, -74.5, 48.25, 0.497928, -74.5, 74.5, 0.497928, -51, 74.5, 0.497928, -62.75, 48.25, 0.497928, -74.5, 39.5, 0.497928, -74.5, 30.75, 0.497928, -74.5, 22, 0.497928, -74.5, 7.75, 0.497928, -27.25, 74.5, 0.497928, -27.25, 74.5, 0.497928, -39.25, 13.25, 0.497928, -74.5, 4.5, 0.497928, -74.5, 4.5, 0.497928, -29.5, 7, 0.497928, -28.5, 74.5, 0.497928, -51, 39.5, 0.497928, -74.5, 30.75, 0.497928, -74.5, 74.5, 0.497928, -39.25, 13.25, 0.497928, -74.5, 7, 0.497928, -28.5, 7.75, 0.497928, -27.25, 22, 0.497928, -74.5, -5.25, 0.497928, -1.75, -4.5, 0.497928, -2, 3.75, 0.497928, -27.5, 3.75, 0.497928, -28.25, -74.5, 0.497928, -28.25, -74.5, 0.497928, -21.25, -74.5, 0.497928, -14.25, -74.5, 0.497928, -7.25, -5.25, 0.497928, -1.75, -74.5, 0.497928, -0.25, -5.5, 0.497928, -0.25, -5.25, 0.497928, -1.75, -74.5, 0.497928, -7.25, -74.5, 0.497928, -21.25, -74.5, 0.497928, -14.25, -5.25, 0.497928, -1.75, -4.5, 0.497928, -2, -4, 0.497928, -1.5, 4.25, 0.497928, -27, 3.75, 0.497928, -27.5, 7.5, 0.497928, -26.5, 4.25, 0.497928, -27, -4, 0.497928, -1.5, -4, 0.497928, -0.5, 74.5, 0.497928, -0.5, 74.5, 0.497928, -7.25, 74.5, 0.497928, -14, 74.5, 0.497928, -20.75, 7.5, 0.497928, -26.5, 74.5, 0.497928, -27.25, 7.75, 0.497928, -27.25, 7.5, 0.497928, -26.5, 74.5, 0.497928, -20.75, 74.5, 0.497928, -7.25, 74.5, 0.497928, -14, 7.5, 0.497928, -26.5, 64.5, 0.497928, 74.5, 74.5, 0.497928, 74.5, 74.5, 0.497928, 65, 64.5, 0.497928, 74.5, 74.5, 0.497928, 65, 74.5, 0.497928, 55.75, 54.5, 0.497928, 74.5, 64.5, 0.497928, 74.5, 74.5, 0.497928, 55.75, 74.5, 0.497928, 46.25, 74.5, 0.497928, 8.75, 74.5, 0.497928, -0.5, -4, 0.497928, -0.5, 44.5, 0.497928, 74.5, 54.5, 0.497928, 74.5, 74.5, 0.497928, 46.25, 74.5, 0.497928, 37, -4, 0.497928, -0.5, -4.75, 0.497928, 0.75, 5, 0.497928, 74.5, 15, 0.497928, 74.5, 34.75, 0.497928, 74.5, 44.5, 0.497928, 74.5, 74.5, 0.497928, 37, 74.5, 0.497928, 27.5, -4, 0.497928, -0.5, 15, 0.497928, 74.5, 24.75, 0.497928, 74.5, 74.5, 0.497928, 18.25, 74.5, 0.497928, 8.75, 24.75, 0.497928, 74.5, 34.75, 0.497928, 74.5, 74.5, 0.497928, 27.5, 74.5, 0.497928, 18.25, -4.75, 0.497928, 0.75, -4.75, 0.497928, 74.5, 5, 0.497928, 74.5, -74.5, 0.497928, 65, -74.5, 0.497928, 74.5, -66, 0.497928, 74.5, -74.5, 0.497928, 65, -66, 0.497928, 74.5, -57.25, 0.497928, 74.5, -74.5, 0.497928, 55.75, -74.5, 0.497928, 65, -57.25, 0.497928, 74.5, -48.5, 0.497928, 74.5, -13.5, 0.497928, 74.5, -4.75, 0.497928, 74.5, -4.75, 0.497928, 0.75, -74.5, 0.497928, 46.25, -74.5, 0.497928, 55.75, -48.5, 0.497928, 74.5, -39.75, 0.497928, 74.5, -4.75, 0.497928, 0.75, -5.5, 0.497928, 0.5, -74.5, 0.497928, 9, -74.5, 0.497928, 18.25, -74.5, 0.497928, 37, -74.5, 0.497928, 46.25, -39.75, 0.497928, 74.5, -31, 0.497928, 74.5, -4.75, 0.497928, 0.75, -74.5, 0.497928, 18.25, -74.5, 0.497928, 27.5, -22.25, 0.497928, 74.5, -13.5, 0.497928, 74.5, -74.5, 0.497928, 27.5, -74.5, 0.497928, 37, -31, 0.497928, 74.5, -22.25, 0.497928, 74.5, -5.5, 0.497928, 0.5, -5.5, 0.497928, -0.25, -74.5, 0.497928, -0.25, -74.5, 0.497928, 9)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(6, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(19, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(25, 24, 23), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 29), PackedInt32Array(32, 31, 30), PackedInt32Array(35, 34, 33), PackedInt32Array(38, 37, 36), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 39), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 47), PackedInt32Array(45, 47, 46), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 48), PackedInt32Array(53, 52, 54), PackedInt32Array(54, 52, 55), PackedInt32Array(57, 56, 58), PackedInt32Array(58, 56, 59), PackedInt32Array(61, 60, 62), PackedInt32Array(62, 60, 63), PackedInt32Array(63, 60, 65), PackedInt32Array(63, 65, 64), PackedInt32Array(68, 67, 66), PackedInt32Array(70, 69, 71), PackedInt32Array(71, 69, 72), PackedInt32Array(75, 74, 73), PackedInt32Array(79, 78, 76), PackedInt32Array(76, 78, 77), PackedInt32Array(82, 81, 83), PackedInt32Array(83, 81, 80), PackedInt32Array(83, 80, 85), PackedInt32Array(83, 85, 84), PackedInt32Array(88, 87, 86), PackedInt32Array(90, 89, 91), PackedInt32Array(91, 89, 92), PackedInt32Array(95, 94, 93), PackedInt32Array(98, 97, 96), PackedInt32Array(101, 100, 99), PackedInt32Array(103, 102, 104), PackedInt32Array(104, 102, 105), PackedInt32Array(108, 107, 106), PackedInt32Array(110, 109, 111), PackedInt32Array(111, 109, 112), PackedInt32Array(114, 113, 115), PackedInt32Array(115, 113, 116), PackedInt32Array(118, 117, 119), PackedInt32Array(119, 117, 120), PackedInt32Array(123, 122, 124), PackedInt32Array(124, 122, 125), PackedInt32Array(125, 122, 121), PackedInt32Array(128, 127, 129), PackedInt32Array(129, 127, 126), PackedInt32Array(132, 131, 130), PackedInt32Array(135, 134, 133), PackedInt32Array(138, 137, 136), PackedInt32Array(140, 139, 141), PackedInt32Array(141, 139, 142), PackedInt32Array(145, 144, 143), PackedInt32Array(147, 146, 148), PackedInt32Array(148, 146, 149), PackedInt32Array(151, 150, 152), PackedInt32Array(152, 150, 153), PackedInt32Array(155, 154, 156), PackedInt32Array(156, 154, 157), PackedInt32Array(159, 158, 160), PackedInt32Array(160, 158, 161), PackedInt32Array(161, 158, 162), PackedInt32Array(165, 164, 166), PackedInt32Array(166, 164, 163), PackedInt32Array(168, 167, 169), PackedInt32Array(169, 167, 170)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4uyjp"]
+albedo_texture = ExtResource("1_4bi4x")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x43bs"]
+size = Vector2(150, 150)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6np2"]
+size = Vector3(2.5, 0, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lh6wl"]
+size = Vector3(200, 30, 14.557)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0n2u"]
+bg_color = Color(1, 0.945098, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwawg"]
+bg_color = Color(0.866667, 0.0941176, 0.145098, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6sox"]
+bg_color = Color(0, 0.592157, 0.156863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kkvb3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.670427, -0.462904, 0.579869, 0, 0.78152, 0.62388, -0.741976, 0.418266, -0.523952, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="FogVolume" type="FogVolume" parent="Map"]
+size = Vector3(150, 0.7, 150)
+material = SubResource("ShaderMaterial_vr4po")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Map"]
+navigation_mesh = SubResource("NavigationMesh_18je3")
+
+[node name="Ground" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
+material_override = SubResource("StandardMaterial3D_4uyjp")
+mesh = SubResource("PlaneMesh_x43bs")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Ground"]
+transform = Transform3D(65, 0, 0, 0, 65, 0, 0, 0, 65, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_s6np2")
+
+[node name="Monarch-L" parent="Map/NavigationRegion3D/Ground" instance=ExtResource("2_5l0sf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21545, 0, -14.6421)
+
+[node name="player" parent="Map/NavigationRegion3D/Ground" instance=ExtResource("1_tr3uu")]
+transform = Transform3D(0.819892, 0, -0.572518, 0, 1, 0, 0.572518, 0, 0.819892, -4.501, 0, -0.838257)
+sens_vertical = 0.2
+
+[node name="Mountains" type="Node3D" parent="Map"]
+transform = Transform3D(0.025514, 0, -0.999674, 0, 1, 0, 0.999674, 0, 0.025514, 79.7999, 0, 42.0508)
+
+[node name="Mountain" parent="Map/Mountains" instance=ExtResource("3_n3yxw")]
+transform = Transform3D(0.0255139, 0, 0.999674, 0, 1, 0, -0.999674, 0, 0.0255139, 39.0927, -5.43964, 40.1601)
+
+[node name="Mountain3" parent="Map/Mountains" instance=ExtResource("3_n3yxw")]
+transform = Transform3D(1, 0, 1.11759e-08, 0, 1, 0, -1.11759e-08, 0, 1, 0.302189, -3.28503, -11.8399)
+
+[node name="Mountain2" parent="Map/Mountains" instance=ExtResource("3_n3yxw")]
+transform = Transform3D(0.0255139, 0, 0.999674, 0, 1, 0, -0.999674, 0, 0.0255139, -135.235, -4.85999, 37.212)
+
+[node name="Mountain4" parent="Map/Mountains" instance=ExtResource("3_n3yxw")]
+transform = Transform3D(-0.999999, 0, -9.68575e-08, 0, 1, 0, 9.68575e-08, 0, -0.999999, -93.7827, -3.97638, 166.785)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Map/Mountains"]
+transform = Transform3D(0.025514, 0, 0.999675, 0, 1, 0, -0.999675, 0, 0.025514, -44.0731, 0, 78.7011)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Mountains/StaticBody3D2"]
+transform = Transform3D(-4.37114e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37114e-08, -76.975, 0, -2.99635)
+shape = SubResource("BoxShape3D_lh6wl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/Mountains/StaticBody3D2"]
+transform = Transform3D(-0.999998, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -0.999998, 10.3665, 0, 77.8803)
+shape = SubResource("BoxShape3D_lh6wl")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Map/Mountains/StaticBody3D2"]
+transform = Transform3D(1.31134e-07, 0, -0.999997, 0, 1, 0, 0.999997, 0, 1.31134e-07, 73.4851, 0, -11.1967)
+shape = SubResource("BoxShape3D_lh6wl")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Map/Mountains/StaticBody3D2"]
+transform = Transform3D(0.999996, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 0.999996, -0.000175017, 0, -78.0161)
+shape = SubResource("BoxShape3D_lh6wl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="YellowBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 479.0
+offset_bottom = 23.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_i0n2u")
+value = 100.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 479.0
+offset_bottom = 24.0
+theme = ExtResource("4_6gg4q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uwawg")
+value = 54.0
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 27.0
+offset_right = 324.0
+offset_bottom = 36.0
+theme = ExtResource("6_ou7jm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i6sox")
+value = 88.0
+show_percentage = false
