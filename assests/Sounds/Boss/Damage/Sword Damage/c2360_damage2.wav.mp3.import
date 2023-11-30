@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1kwk42pv7g35"
+path="res://.godot/imported/c2360_damage2.wav.mp3-d27db3894219979d28a17f845fd068bd.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Boss/Damage/Sword Damage/c2360_damage2.wav.mp3"
+dest_files=["res://.godot/imported/c2360_damage2.wav.mp3-d27db3894219979d28a17f845fd068bd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
