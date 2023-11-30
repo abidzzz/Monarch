@@ -1,14 +1,11 @@
 # Monarch
-Souls like game made in godot
-
-<iframe frameborder="0" src="https://itch.io/embed/2365606?linkback=true&amp;bg_color=6f0004&amp;fg_color=ffffff&amp;link_color=ff1616&amp;border_color=6f0004" width="552" height="167"><a href="https://abidzzz.itch.io/monarch">Monarch by Abid</a></iframe>
-# Game Title
+[Download the game](https://abidzzz.itch.io/monarch)
 
 ![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-19-54_1366x768.png)
 ![Game Screenshot](/screenshots/Screenshot_2023-11-15-23-20-55_1366x768.png)
 ## Description
 
-A game inspired by the combat mechanics of the Souls series. It has alot of bugs but "it is what it is"
+A game inspired by the combat mechanics of the Souls series made in godot . It has alot of bugs but "it is what it is"
 
 ## Features
 
