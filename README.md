@@ -34,7 +34,6 @@ A game inspired by the combat mechanics of the Souls series made in godot . It h
 - **Right Mouse Button:** Combo
 - **R** Draw/Sheath Sword
 - **Q** Heal
-- [Add any other controls as needed]
 
 ## Contributions
 
